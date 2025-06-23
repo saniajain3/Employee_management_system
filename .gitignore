@@ -369,3 +369,11 @@ FodyWeavers.xsd
 **/appsettings.*.json
 *.pfx
 *.pem
+
+# Angular
+/web-app/node_modules
+/web-app/dist
+
+# Environment files
+*.env
+/web-app/src/environments/environment.prod.ts
