@@ -1,0 +1,22 @@
+<div class="p-8">
+    <div class="flex items-center justify-between mb-2">
+        <h1 class="text-xl font-semibold">Employee List</h1>
+        <mat-form-field class="w-4/12">
+            <mat-label>Search</mat-label>
+            <input type="text" matInput [formControl]="searchControl" />
+        </mat-form-field>
+
+        <button mat-flat-button color="primary"
+            class="flex items-center gap-2 bg-green-600! hover:bg-green-700! text-white text-sm font-medium rounded-md px-4 py-2 shadow transition"
+            (click)="add()">
+            <mat-icon fontIcon="add" class="text-white text-base">add</mat-icon>
+            Add Employee
+        </button>
+    </div>
+    <app-table [PagedData]="pagedEmployeeData" [pageIndex]="filter.pageIndex" [pageSize]="filter.pageSize"
+        [displayedColumns]="showCols" 
+        (onEdit)="edit($event)" 
+        (onDelete)="delete($event)"
+        (onPageChange)="pageChange($event)"></app-table>
+
+</div>

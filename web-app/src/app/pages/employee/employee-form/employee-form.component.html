@@ -1,0 +1,136 @@
+
+@if(this.data.employeeId) {
+  <h2 class="form-heading">Edit Employee Details</h2>
+  <!-- <mat-card-title>Edit Employee Details</mat-card-title> -->
+} @else {
+  <!-- <mat-card-title>Add New Employee</mat-card-title> -->
+   <h2 class="form-heading">Add New Employee Details</h2>
+}
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form" mat-dialog-content>
+  <div class="form-grid">
+    <!-- IC No -->
+    <mat-form-field appearance="fill">
+      <mat-label>IC No</mat-label>
+      <input matInput formControlName="IC_No" required />
+    </mat-form-field>
+
+    <!-- PIS No -->
+    <mat-form-field appearance="fill">
+      <mat-label>PIS No</mat-label>
+      <input matInput formControlName="PIS_No" required type="number" min="0" [readonly]="data?.employeeId"/>
+    </mat-form-field>
+
+    <!-- Name -->
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="Name" required />
+    </mat-form-field>
+
+    <!-- Designation -->
+    <mat-form-field appearance="fill">
+      <mat-label>Designation</mat-label>
+      <input matInput formControlName="Designation" />
+    </mat-form-field>
+
+    <!-- Cadre -->
+    <mat-form-field appearance="fill">
+      <mat-label>Cadre</mat-label>
+      <mat-select formControlName="Cadre" required>
+        @for(item of departments; track $index) {
+        <mat-option [value]="item.Cadre">{{item.Cadre}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Sub Cadre -->
+    <mat-form-field appearance="fill">
+      <mat-label>Sub Cadre</mat-label>
+      <input matInput formControlName="Sub_Cadre" />
+    </mat-form-field>
+
+    <!-- Group -->
+    <mat-form-field appearance="fill">
+      <mat-label>Group</mat-label>
+      <input matInput formControlName="Group" />
+    </mat-form-field>
+
+    <!-- Email -->
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="Email" />
+    </mat-form-field>
+
+    <!-- Phone -->
+    <mat-form-field appearance="fill">
+      <mat-label>Phone</mat-label>
+      <input matInput type="tel" formControlName="Phone" />
+    </mat-form-field>
+
+    <!-- DOB -->
+    <mat-form-field appearance="fill">
+      <mat-label>Date of Birth</mat-label>
+      <input matInput [matDatepicker]="dob" formControlName="DOB" />
+      <mat-hint>Format: MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+      <mat-datepicker #dob></mat-datepicker>
+    </mat-form-field>
+
+    <!-- Superannuation -->
+    <mat-form-field appearance="fill">
+      <mat-label>Superannuation Date</mat-label>
+      <input matInput [matDatepicker]="dos" formControlName="Date_of_Superannuation" />
+      <mat-hint>Format: MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="dos"></mat-datepicker-toggle>
+      <mat-datepicker #dos></mat-datepicker>
+    </mat-form-field>
+
+    <!-- Category -->
+    <mat-form-field appearance="fill">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="Category" required>
+        @for (item of categoryOptions; track $index) {
+        <mat-option [value]="item">{{ item }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+
+    <!-- Gender -->
+    <mat-form-field appearance="fill">
+      <mat-label>Gender</mat-label>
+      <mat-select formControlName="Gender" required>
+        @for (item of genderOptions; track $index) {
+        <mat-option [value]="item">{{ item }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+
+    <!-- Qualification -->
+    <mat-form-field appearance="fill">
+      <mat-label>Latest Qualification</mat-label>
+      <input matInput formControlName="Latest_Qualification" />
+    </mat-form-field>
+
+    <!-- Joining Date -->
+    <mat-form-field appearance="fill">
+      <mat-label>Date of Joining</mat-label>
+      <input matInput [matDatepicker]="doj" formControlName="Date_of_Joining" />
+      <mat-hint>Format: MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="doj"></mat-datepicker-toggle>
+      <mat-datepicker #doj></mat-datepicker>
+    </mat-form-field>
+
+    <!-- Discipline -->
+    <mat-form-field appearance="fill">
+      <mat-label>Latest Discipline</mat-label>
+      <input matInput formControlName="Latest_Discipline" />
+    </mat-form-field>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="form-actions">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-flat-button color="primary" [disabled]="employeeForm.invalid">{{this.data.employeeId?'Update':'Add'}}</button>
+  </div>
+</form>

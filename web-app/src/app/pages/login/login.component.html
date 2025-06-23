@@ -1,0 +1,54 @@
+<div class="login-wrapper">
+  <mat-card class="login-card">
+    <div class="login-header">
+      <mat-icon class="login-icon">lock</mat-icon>
+      <h2>Welcome Back</h2>
+      <p>Please log in to continue</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="example@gmail.com" formControlName="email" type="email" />
+        <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+          Enter a valid email
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [type]="hidePassword ? 'password' : 'text'"
+          formControlName="password"
+        />
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+          Minimum 6 characters
+        </mat-error>
+      </mat-form-field>
+
+      <button
+        mat-flat-button
+        color="primary"
+        class="full-width login-btn"
+        type="submit"
+        [disabled]="loginForm.invalid"
+      >
+        Log In
+      </button>
+    </form>
+
+    <div class="login-footer">
+      <a href="#">Forgot password?</a>
+    </div>
+  </mat-card>
+</div>

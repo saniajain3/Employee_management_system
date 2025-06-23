@@ -1,0 +1,50 @@
+<!-- Show only if not on login page -->
+<div *ngIf="!isLoginPage()">
+  <header>
+    <mat-toolbar class="bg-blue-500! flex justify-between items-center">
+      <div class="flex items-center">
+        <button (click)="drawer.toggle()" class="text-white!">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="text-white!">Employee management system</span>
+      </div>
+      <div class="flex gap-2">
+        <span routerLink="/profile" class="text-white cursor-pointer">{{AuthService.AuthDetails?.Email}}</span>
+      </div>
+      <button (click)="logout()" class="text-white!">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-toolbar>
+  </header>
+
+  <mat-drawer-container class="h-screen w-screen">
+
+    <mat-drawer #drawer class="w-[200px] bg-white shadow-lg" [mode]="'side'" [opened]="AuthService.isLoggedIn">
+
+      <div class="flex flex-col items-center gap-4 text-blue-900 p-4">
+        @if(AuthService.isEmployee){
+
+        <a routerLink="/employeedashboard">Employee Dashboard</a>
+        }
+        @else{
+        <a routerLink="/">Dashboard</a>
+        <a routerLink="/departments">Departments</a>
+        <a routerLink="/employee">Employee List</a>
+        }
+      </div>
+    </mat-drawer>
+
+    <mat-drawer-content>
+      <main class="min-h-screen bg-gray-100">
+        <router-outlet></router-outlet>
+      </main>
+    </mat-drawer-content>
+  </mat-drawer-container>
+
+  <footer></footer>
+</div>
+
+<!-- Always show router outlet -->
+<div *ngIf="isLoginPage()">
+  <router-outlet></router-outlet>
+</div>

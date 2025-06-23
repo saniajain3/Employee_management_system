@@ -1,0 +1,45 @@
+<mat-card class="profile-card">
+  <div class="profile-header">
+    <img src="assets/default-user.png" alt="Avatar" class="avatar" />
+    <div class="header-details">
+      <h2>{{ profileForm.value.name }}</h2>
+      <!-- <p class="role">General Manager</p> -->
+      <p><strong>Phone:</strong> {{ profileForm.value.phone }}</p>
+      <p><strong>Email:</strong> {{ profileForm.value.email }}</p>
+      <button mat-icon-button color="primary" (click)="editing = true" *ngIf="!editing">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Editable Form -->
+  <form *ngIf="editing" [formGroup]="profileForm" (ngSubmit)="onUpdate()" class="profile-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="phone" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" />
+      <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div class="form-actions">
+      <button mat-stroked-button color="warn" type="button" (click)="editing = false">Cancel</button>
+      <button mat-flat-button color="primary" type="submit">Update</button>
+    </div>
+  </form>
+</mat-card>

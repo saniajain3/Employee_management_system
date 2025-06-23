@@ -1,0 +1,31 @@
+.employee-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.form-heading {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center; // use 'flex-end' for bottom-right
+  gap: 1rem;
+  margin-top: 2rem;
+}
