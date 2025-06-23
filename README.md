@@ -11,12 +11,15 @@
    cd Employee_management_system
 
 ## Backend setup
+```bash
 cd EmployeeManagementSystem
 dotnet restore
 dotnet user-secrets set "Jwt:Key" "your-secret-key-32"
 dotnet run
-
+```
 ## Frontend Setup
+```bash
 cd web-app
 npm install
 npm start
+```
